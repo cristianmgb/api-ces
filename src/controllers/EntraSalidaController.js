@@ -27,7 +27,7 @@ async function entradaSalida(req, res) {
       console.log("insert id: ", entrada.insertId);
       res.status(200).send({
         status: "OK",
-        message: `Hola, Bienvenido a Millionaires`,
+        message: `Hola, Bienvenido`,
       });
     }
   } else if (tipo === "salida") {
@@ -113,7 +113,7 @@ async function validateEmployes(req, res) {
   const cedula = req.body.cedula;
 
   const employe = await query(
-    `SELECT id, nombres, apellidos, foto FROM employes WHERE identificacion = ${cedula};`
+    `SELECT id, nombres, apellidos FROM employes WHERE identificacion = ${cedula};`
   );
 
   if (employe.length > 0) {
@@ -123,7 +123,7 @@ async function validateEmployes(req, res) {
     res.status(200).send({
       status: "OK",
       data: { id_empleado, foto, nombres },
-      message: `Hola ${nombres}, Bienvenido a Millionaires`,
+      message: `Hola ${nombres}, Bienvenido`,
     });
   } else {
     res.status(200).send({
